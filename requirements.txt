@@ -1,0 +1,5 @@
+django
+flake8
+flake8-print
+flake8-builtins
+flake8-import-order
