@@ -1,5 +1,8 @@
 django
+django-extensions
+ipython
 flake8
 flake8-print
 flake8-builtins
 flake8-import-order
+flake8-debugger
