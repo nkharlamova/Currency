@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} ContactUs List {% endblock %}
+
+{% block content %}
+
+
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>email from</td>
+        <td>subject</td>
+        <td>message</td>
+        <td>created</td>
+    </tr>
+    {% for val in contacts_list %}
+    <tr>
+        <td>{{ val.id }}</td>
+        <td>{{ val.email_from }}</td>
+        <td>{{ val.subject }}</td>
+        <td>{{ val.message }}</td>
+        <td>{{ val.created|date:"Y-m-d" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %} 
