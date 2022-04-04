@@ -2,10 +2,11 @@ from django.db import models
 
 
 class ContactUs(models.Model):
-    email_from = models.EmailField(max_length=100)
+    email_from = models.CharField(max_length=100)
+    reply_to = models.EmailField(default='')
     subject = models.CharField(max_length=64)
     message = models.CharField(max_length=450)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
 
 
 class Rate(models.Model):
