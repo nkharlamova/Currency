@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'debug_toolbar',
-
+    'accounts',
     'currency',
 ]
 
@@ -58,7 +60,9 @@ ROOT_URLCONF = 'settings.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,9 +131,16 @@ INTERNAL_IPS = [
 ]
 
 # email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
 EMAIL_HOST_USER = 'natatest2022@gmail.com'
-EMAIL_HOST_PASSWORD = 'qwerty12345qwerty@@'
+# EMAIL_HOST_PASSWORD = 'qwerty12345qwerty@@'
+DEFAULT_FROM_EMAIL = 'natatest2022@gmail.com'
+
+
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+AUTH_USER_MODEL = 'accounts.User'
+LOGOUT_REDIRECT_URL = reverse_lazy('index')
