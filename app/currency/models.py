@@ -1,3 +1,5 @@
+from currency import model_choices as mch
+
 from django.db import models
 
 
@@ -10,9 +12,9 @@ class ContactUs(models.Model):
 
 
 class Rate(models.Model):
-    type = models.CharField(max_length=5)
+    type = models.CharField(max_length=5, choices=mch.RateType.choices)
     source = models.CharField(max_length=64)
-    created = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
     buy = models.DecimalField(max_digits=10, decimal_places=2)
     sale = models.DecimalField(max_digits=10, decimal_places=2)
 

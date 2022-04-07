@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+    Do you want to delete 'Rate' with id '{{ rate.id }}'?
+</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete Rate</button>
+</form>
+{% endblock content %}
