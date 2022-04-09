@@ -140,7 +140,10 @@ EMAIL_HOST_USER = 'natatest2022@gmail.com'
 # EMAIL_HOST_PASSWORD = 'qwerty12345qwerty@@'
 DEFAULT_FROM_EMAIL = 'natatest2022@gmail.com'
 
-
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 AUTH_USER_MODEL = 'accounts.User'
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
+
+# Custom settings
+DOMAIN = 'localhost:8000'
+HTTP_SCHEMA = 'http'
