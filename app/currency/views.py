@@ -14,7 +14,7 @@ class ContactUsList(ListView):
 
 
 class RateList(ListView):
-    queryset = Rate.objects.all().order_by('-id')
+    queryset = Rate.objects.all().order_by('-id').select_related('source')
     template_name = 'rate.html'
 
 

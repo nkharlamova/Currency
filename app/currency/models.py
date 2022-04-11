@@ -13,7 +13,7 @@ class ContactUs(models.Model):
 
 class Rate(models.Model):
     type = models.CharField(max_length=5, choices=mch.RateType.choices)
-    source = models.CharField(max_length=64)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')
     created = models.DateTimeField(auto_now_add=True)
     buy = models.DecimalField(max_digits=10, decimal_places=2)
     sale = models.DecimalField(max_digits=10, decimal_places=2)
@@ -21,4 +21,7 @@ class Rate(models.Model):
 
 class Source(models.Model):
     source_url = models.CharField(max_length=255)
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
+
+    def __str__(self):
+        return self.name
