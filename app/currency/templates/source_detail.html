@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% block title %} Source Details {% endblock %}
 {% block content %}
+<div><img src="{{ source.logo_url }}" width="100" height="100" class="rounded"></div>
 <p>
     ID: {{ source.id }}<br>
     source_url: {{ source.source_url }}<br>

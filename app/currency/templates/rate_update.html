@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-
+{% block title %} Update Rate {% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Rate</button>
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-secondary">Update Rate</button>
 </form>
 {% endblock content %}

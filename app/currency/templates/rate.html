@@ -1,37 +1,55 @@
 {% extends 'base.html' %}
 {% block title %} Rate {% endblock %}
 {% block content %}
-<a href="{% url 'currency:rate_create' %}">Rate Create</a>
+<div class="row">
+    <div class="col">
+        <a href="{% url 'currency:rate_create' %}" class="btn btn-secondary">Rate Create</a>
+    </div>
+</div>
 
-<table border="1">
-    <tr>
-        <td>id</td>
-        <td>type</td>
-        <td>source</td>
-        <td>buy</td>
-        <td>sale</td>
-        <td>created</td>
-        {% if request.user.is_authenticated %}
-            <td>details</td>
-        {% endif %}
-        <td>edit</td>
-        <td>delete</td>
-    </tr>
-    {% for val in rate_list %}
-    <tr>
-        <td>{{ val.id }}</td>
-        <td>{{ val.type }}</td>
-        <td>{{ val.source.name }}</td>
-        <td>{{ val.buy }}</td>
-        <td>{{ val.sale }}</td>
-        <td>{{ val.created|date:"Y-m-d" }}</td>
-        {% if request.user.is_authenticated %}
-            <td><a href="{% url 'currency:rate_detail' val.id %}">Details</a></td>
-        {% endif %}
-        <td><a href="{% url 'currency:rate_update' val.id %}">Edit</a></td>
-        <td><a href="{% url 'currency:rate_delete' val.id %}">Delete</a></td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">type</th>
+                <th scope="col">source</th>
+                <th scope="col">buy</th>
+                <th scope="col">sale</th>
+                <th scope="col">created</th>
+                <th scope="col">actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for val in rate_list %}
+            <tr>
+                <th scope="row">{{ val.id }}</th>
+                <td>{{ val.type }}</td>
+                <td>{{ val.source.name }}</td>
+                <td>{{ val.buy }}</td>
+                <td>{{ val.sale }}</td>
+                <td>{{ val.created|date:"Y-m-d" }}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% if request.user.is_authenticated %}
+                            <a class="dropdown-item" href="{% url 'currency:rate_detail' val.id %}">Details</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{% url 'currency:rate_update' val.id %}">Edit</a>
+                            <a class="dropdown-item" href="{% url 'currency:rate_delete' val.id %}">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock content %}
