@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
-
+{% block title %} My Profile {% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 
-<div>My Profile</div>
-<form method="post">
+<div>
+    <p class="h1">My Profile</p>
+</div>
+<div>
+    <p class="font-weight-bolder">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+</div>
+
+<img src="{{ request.user.avatar_url }}" width="100" height="100" class="rounded">
+
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Profile</button>
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-secondary">Update Profile</button>
 </form>
 
 {% endblock content %}

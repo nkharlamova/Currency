@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>
-    Hello
-</h1>
 <div>
-    Welcome to Currency Project
+    <p class="h1">Hello</p>
+</div>
+<div>
+    {% if request.user.is_authenticated %}
+    <p class="font-weight-bolder">
+        {{ request.user.first_name }} {{ request.user.last_name }}, Welcome to Currency Project
+    </p>
+    {% else %}
+    <p class="font-weight-bolder">
+        Welcome to Currency Project
+    </p>
+    {% endif %}
 </div>
 
 {% endblock content %}

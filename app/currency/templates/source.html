@@ -2,27 +2,49 @@
 {% block title %} Source List {% endblock %}
 
 {% block content %}
-<a href="{% url 'currency:source_create' %}">Create Source</a>
+<div class="row">
+    <div class="col">
+        <a href="{% url 'currency:source_create' %}" class="btn btn-secondary">Create Source</a>
+    </div>
+</div>
 
-<table border="1">
-    <tr>
-        <td>id</td>
-        <td>source_url</td>
-        <td>name</td>
-        <td>details</td>
-        <td>edit</td>
-        <td>delete</td>
-    </tr>
-    {% for val in source_list %}
-    <tr>
-        <td>{{ val.id }}</td>
-        <td>{{ val.source_url }}</td>
-        <td>{{ val.name }}</td>
-        <td><a href="{% url 'currency:source_detail' val.id %}">Details</a></td>
-        <td><a href="{% url 'currency:source_update' val.id %}">Edit</a></td>
-        <td><a href="{% url 'currency:source_delete' val.id %}">Delete</a></td>
-    </tr>
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">logo</th>
+                <th scope="col">source_url</th>
+                <th scope="col">name</th>
+                <th scope="col">actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for val in source_list %}
+            <tr>
+                <th scope="row">{{ val.id }}</th>
+                <td><img src="{{ val.logo_url }}" width="80" height="80" class="rounded-circle"></td>
+                <td>{{ val.source_url }}</td>
+                <td>{{ val.name }}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'currency:source_detail' val.id %}">Details</a>
+                            <a class="dropdown-item" href="{% url 'currency:source_update' val.id %}">Edit</a>
+                            <a class="dropdown-item" href="{% url 'currency:source_delete' val.id %}">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
 
-    {% endfor %}
-</table>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}

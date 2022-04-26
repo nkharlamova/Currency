@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
+{% block title %} Delete Rate {% endblock %}
 {% block content %}
 <p>
     Do you want to delete 'Rate' with id '{{ rate.id }}'?
 </p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Delete Rate</button>
+    <button type="submit" class="btn btn-secondary">Delete</button>
 </form>
 {% endblock content %}

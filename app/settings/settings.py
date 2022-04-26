@@ -40,9 +40,12 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'debug_toolbar',
+    'crispy_forms',
     'accounts',
     'currency',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -120,6 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'accounts' / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -147,3 +153,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 # Custom settings
 DOMAIN = 'localhost:8000'
 HTTP_SCHEMA = 'http'
+
+MEDIA_ROOT = BASE_DIR / '..' / 'static_content' / 'media'
+MEDIA_URL = '/media/'
