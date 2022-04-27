@@ -1,12 +1,8 @@
 from currency import views as currency_views
 
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 
-
 app_name = 'currency'
-
 
 urlpatterns = [
     # ContactUs
@@ -27,6 +23,3 @@ urlpatterns = [
     path('source/detail/<int:pk>/', currency_views.SourceDetail.as_view(), name='source_detail'),
     path('source/delete/<int:pk>/', currency_views.SourceDelete.as_view(), name='source_delete'),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -156,3 +156,5 @@ HTTP_SCHEMA = 'http'
 
 MEDIA_ROOT = BASE_DIR / '..' / 'static_content' / 'media'
 MEDIA_URL = '/media/'
+
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
