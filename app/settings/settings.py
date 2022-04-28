@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from celery.schedules import crontab
+
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -158,3 +160,9 @@ MEDIA_ROOT = BASE_DIR / '..' / 'static_content' / 'media'
 MEDIA_URL = '/media/'
 
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_BEAT_SCHEDULE = {
+    'parse_privatbank': {
+        'task': 'currency.tasks.parse_privatbank',
+        'schedule': crontab(minute='*/1'),
+    },
+}

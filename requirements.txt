@@ -4,6 +4,7 @@ django-debug-toolbar
 django-extensions
 ipython
 celery
+requests
 flake8
 flake8-print
 flake8-builtins
