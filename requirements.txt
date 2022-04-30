@@ -2,9 +2,13 @@ django
 django-crispy-forms
 django-debug-toolbar
 django-extensions
+
 ipython
 celery
 requests
+beautifulsoup4
+lxml
+
 flake8
 flake8-print
 flake8-builtins
