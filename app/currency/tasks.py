@@ -29,11 +29,8 @@ def parse_privatbank():
         'UAH': mch.RateType.UAH,
     }
 
-    try:
-        source = Source.objects.get(code_name=mch.SourceCodeName.PRIVATBANK)
-    except Source.DoesNotExist:
-        source = Source.objects.create(code_name=mch.SourceCodeName.PRIVATBANK,
-                                       name='PrivatBank', source_url=url)
+    source = Source.objects.get_or_create(code_name=mch.SourceCodeName.PRIVATBANK,
+                                          name='PrivatBank', source_url=url)[0]
 
     for rate in rates:
         currency_type = available_currencies.get(rate['ccy'])
@@ -75,11 +72,8 @@ def parse_monobank():
         980: mch.RateType.UAH,
     }
 
-    try:
-        source = Source.objects.get(code_name=mch.SourceCodeName.MONOBANK)
-    except Source.DoesNotExist:
-        source = Source.objects.create(code_name=mch.SourceCodeName.MONOBANK,
-                                       name='MonoBank', source_url=url)
+    source = Source.objects.get_or_create(code_name=mch.SourceCodeName.MONOBANK,
+                                          name='MonoBank', source_url=url)[0]
 
     for rate in rates:
         currency_type = available_currencies.get(rate['currencyCodeA'])
@@ -120,11 +114,8 @@ def parse_vkurse():
         'Euro': mch.RateType.EUR,
     }
 
-    try:
-        source = Source.objects.get(code_name=mch.SourceCodeName.VKURSE)
-    except Source.DoesNotExist:
-        source = Source.objects.create(code_name=mch.SourceCodeName.VKURSE,
-                                       name='Vkurse', source_url=url)
+    source = Source.objects.get_or_create(code_name=mch.SourceCodeName.VKURSE,
+                                          name='Vkurse', source_url=url)[0]
 
     base_currency_type = mch.RateType.UAH
 
@@ -165,16 +156,14 @@ def parse_otpbank():
         'USD': mch.RateType.USD,
         'EUR': mch.RateType.EUR,
     }
-    try:
-        source = Source.objects.get(code_name=mch.SourceCodeName.OTPBANK)
-    except Source.DoesNotExist:
-        source = Source.objects.create(code_name=mch.SourceCodeName.OTPBANK,
-                                       name='OtpBank', source_url=url)
+    source = Source.objects.get_or_create(code_name=mch.SourceCodeName.OTPBANK,
+                                          name='OtpBank', source_url=url)[0]
 
-    usd_buy = soup.find_all('td', {'class': 'currency-list__value'})[0].get_text()
-    usd_sale = soup.find_all('td', {'class': 'currency-list__value'})[1].get_text()
-    eur_buy = soup.find_all('td', {'class': 'currency-list__value'})[2].get_text()
-    eur_sale = soup.find_all('td', {'class': 'currency-list__value'})[3].get_text()
+    currency_list_value = soup.find_all('td', {'class': 'currency-list__value'})
+    usd_buy = currency_list_value[0].get_text()
+    usd_sale = currency_list_value[1].get_text()
+    eur_buy = currency_list_value[2].get_text()
+    eur_sale = currency_list_value[3].get_text()
 
     usd = {"type": "USD", "buy": usd_buy, "sale": usd_sale}
     eur = {"type": "EUR", "buy": eur_buy, "sale": eur_sale}
@@ -220,11 +209,8 @@ def parse_ukrsibbank():
         'USD': mch.RateType.USD,
         'EUR': mch.RateType.EUR,
     }
-    try:
-        source = Source.objects.get(code_name=mch.SourceCodeName.UKRSIBBANK)
-    except Source.DoesNotExist:
-        source = Source.objects.create(code_name=mch.SourceCodeName.UKRSIBBANK,
-                                       name='UkrsibBank', source_url=url)
+    source = Source.objects.get_or_create(code_name=mch.SourceCodeName.UKRSIBBANK,
+                                          name='UkrsibBank', source_url=url)[0]
 
     main_data = soup.find('div', class_='currency__wrapper').find('tbody').findAll('tr')
 
@@ -277,11 +263,8 @@ def parse_oschadbank():
         'USD': mch.RateType.USD,
         'EUR': mch.RateType.EUR,
     }
-    try:
-        source = Source.objects.get(code_name=mch.SourceCodeName.OSCHADBANK)
-    except Source.DoesNotExist:
-        source = Source.objects.create(code_name=mch.SourceCodeName.OSCHADBANK,
-                                       name='OschadBank', source_url=url)
+    source = Source.objects.get_or_create(code_name=mch.SourceCodeName.OSCHADBANK,
+                                          name='OschadBank', source_url=url)[0]
 
     main_data = soup.find_all(class_="currency__item")
 
