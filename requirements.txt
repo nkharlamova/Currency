@@ -7,6 +7,10 @@ ipython
 celery
 requests
 django-filter
+djangorestframework
+drf-yasg
+djangorestframework-xml
+djangorestframework-csv
 beautifulsoup4
 lxml
 
