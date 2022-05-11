@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'django_filters',
+    'rest_framework',
+    'drf_yasg',
     'crispy_forms',
+
     'accounts',
     'currency',
 ]
