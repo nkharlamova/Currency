@@ -1,4 +1,4 @@
-from api.tasks import send_email
+from api.v1.tasks import send_email
 
 from currency.models import ContactUs, Rate, Source
 
