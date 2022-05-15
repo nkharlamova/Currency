@@ -1,9 +1,5 @@
 django
 django-crispy-forms
-django-debug-toolbar
-django-extensions
-
-ipython
 celery
 requests
 django-filter
@@ -15,8 +11,18 @@ djangorestframework-simplejwt
 beautifulsoup4
 lxml
 
+# dev
+django-debug-toolbar
+django-extensions
+ipython
+
+# flake8
 flake8
 flake8-print
 flake8-builtins
 flake8-import-order
 flake8-debugger
+
+# pytest
+pytest
+pytest-django

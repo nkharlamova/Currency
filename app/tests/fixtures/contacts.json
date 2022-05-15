@@ -1,0 +1,35 @@
+[
+  {
+    "model": "currency.contactus",
+    "pk": 1,
+    "fields": {
+      "email_from": "Natalia",
+      "reply_to": "example@gmail.com",
+      "subject": "TEST SUBJECT",
+      "message": "test message",
+      "created": "2022-05-10T14:40:21.340Z"
+    }
+  },
+  {
+    "model": "currency.contactus",
+    "pk": 2,
+    "fields": {
+      "email_from": "Nata",
+      "reply_to": "example@gmail.com",
+      "subject": "TEST SUBJECT",
+      "message": "test message",
+      "created": "2022-05-10T15:22:39.903Z"
+    }
+  },
+  {
+    "model": "currency.contactus",
+    "pk": 5,
+    "fields": {
+      "email_from": "hj",
+      "reply_to": "b@uih.bhy",
+      "subject": "n",
+      "message": "n",
+      "created": "2022-05-10T15:26:44.267Z"
+    }
+  }
+]
