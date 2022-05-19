@@ -6,12 +6,33 @@ from celery import shared_task
 
 from currency import model_choices as mch
 
+from django.conf import settings
+from django.core.mail import send_mail
+
 import requests
 
 
 def round_decimal(value: str) -> Decimal:
     places = Decimal(10) ** -2
     return Decimal(value).quantize(places)
+
+
+@shared_task
+def contact_us_async(email_from, reply_to, subject, message):
+    recipient = settings.EMAIL_HOST_USER
+    body = f'''
+            Request From: {email_from}
+            Email to reply: {reply_to}
+            Subject: {subject}
+            Body: {message}
+            '''
+    send_mail(
+        subject,
+        body,
+        recipient,
+        [recipient],
+        fail_silently=False,
+    )
 
 
 @shared_task
