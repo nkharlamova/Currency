@@ -1,10 +1,9 @@
 from currency.filters import RateFilter
 from currency.forms import ContactusForm, RateForm, SourceForm
 from currency.models import ContactUs, Rate, Source
+from currency.tasks import contact_us_async
 
-from django.conf import settings
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.core.mail import send_mail
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http.request import QueryDict
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
@@ -96,32 +95,21 @@ class SourceDetail(DetailView):
     template_name = 'source_detail.html'
 
 
-class ContactUsCreate(CreateView):
+class ContactUsCreate(LoginRequiredMixin, CreateView):
     model = ContactUs
     template_name = 'contactus_create.html'
     form_class = ContactusForm
     success_url = reverse_lazy('currency:contactus_list')
 
-    def _send_email(self):
-        recipient = settings.EMAIL_HOST_USER
-        subject = 'User ContactUs'
-        body = f'''
-                Request From: {self.object.email_from}
-                Email to reply: {self.object.reply_to}
-                Subject: {self.object.subject}
-                Body: {self.object.message}
-                '''
-        send_mail(
-            subject,
-            body,
-            recipient,
-            [recipient],
-            fail_silently=False,
-        )
-
     def form_valid(self, form):
         redirect = super().form_valid(form)
-        self._send_email()
+        data = form.cleaned_data
+        contact_us_async.delay(
+            data['email_from'],
+            data['reply_to'],
+            data['subject'],
+            data['message'],
+        )
         return redirect
 
     def form_invalid(self, form):

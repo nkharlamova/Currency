@@ -26,3 +26,5 @@ flake8-debugger
 # pytest
 pytest
 pytest-django
+pytest-cov
+pytest-mock
