@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from currency import model_choices as mch
 
 from django.db import models
@@ -16,7 +18,7 @@ class Rate(models.Model):
     type = models.CharField(max_length=5, choices=mch.RateType.choices)
     base_type = models.CharField(max_length=5, choices=mch.RateType.choices, default=mch.RateType.UAH)
     source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=datetime.now, editable=True)
     buy = models.DecimalField(max_digits=10, decimal_places=2)
     sale = models.DecimalField(max_digits=10, decimal_places=2)
 
