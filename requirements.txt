@@ -8,6 +8,9 @@ drf-yasg
 djangorestframework-xml
 djangorestframework-csv
 djangorestframework-simplejwt
+gunicorn
+uwsgi
+nginx
 beautifulsoup4
 lxml
 
