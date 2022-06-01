@@ -10,7 +10,6 @@ djangorestframework-csv
 djangorestframework-simplejwt
 gunicorn
 uwsgi
-nginx
 beautifulsoup4
 lxml
 
