@@ -12,6 +12,8 @@ gunicorn
 uwsgi
 beautifulsoup4
 lxml
+psycopg2-binary
+django-environ
 
 # dev
 django-debug-toolbar
