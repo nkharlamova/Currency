@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-manage_py := python3 app/manage.py
+manage_py := docker exec -it backend python app/manage.py
 
 makemigrations:
 	$(manage_py) makemigrations
@@ -12,7 +12,7 @@ shell:
 	$(manage_py) shell_plus --print-sql
 
 run:
-	$(manage_py) runserver
+	$(manage_py) runserver 0:8001
 
 gunicorn:
 	 cd app && gunicorn settings.wsgi --threads 2 --workers 4 --log-level debug --max-requests 1000 --timeout 10 --bind=0.0.0.0:8000
@@ -30,5 +30,7 @@ beat:
 	cd app && celery -A settings beat -l info
 
 pytest:
-	pytest ./app/tests --cov=app --cov-report html -vv && coverage report --fail-under=76
+	docker exec -it backend pytest ./app/tests --cov=app --cov-report html -vv && coverage report --fail-under=67
 
+flake8:
+	docker exec -it backend flake8 app/
