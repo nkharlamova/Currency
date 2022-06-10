@@ -19,6 +19,7 @@ django-environ
 django-debug-toolbar
 django-extensions
 ipython
+flower
 
 # flake8
 flake8
