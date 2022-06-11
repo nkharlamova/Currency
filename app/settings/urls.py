@@ -12,8 +12,11 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('currency/', include('currency.urls')),
     path('api/', include('api.urls')),
-    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns.append(path('__debug__/', include('debug_toolbar.urls')))

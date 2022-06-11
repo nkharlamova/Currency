@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework_simplejwt',
     'rangefilter',
+    'silk',
 
     'accounts',
     'currency',
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
+    'silk.middleware.SilkyMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

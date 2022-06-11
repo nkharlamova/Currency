@@ -21,6 +21,7 @@ django-debug-toolbar
 django-extensions
 ipython
 flower
+django-silk
 
 # flake8
 flake8
