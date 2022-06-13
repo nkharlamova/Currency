@@ -14,12 +14,14 @@ beautifulsoup4
 lxml
 psycopg2-binary
 django-environ
+django-admin-rangefilter
 
 # dev
 django-debug-toolbar
 django-extensions
 ipython
 flower
+django-silk
 
 # flake8
 flake8

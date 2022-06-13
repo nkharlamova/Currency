@@ -13,6 +13,11 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    class Meta:
+        permissions = [
+            ("can_change_email", "Can change the user email"),
+        ]
+
     email = models.EmailField('email address', unique=True)
     avatar = models.FileField(upload_to=upload_avatar, default=None, null=True, blank=True)
     phone = models.CharField(max_length=64, default=None, null=True, blank=True, unique=True)

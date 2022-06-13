@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'crispy_forms',
     'rest_framework_simplejwt',
+    'rangefilter',
+    'silk',
 
     'accounts',
     'currency',
@@ -64,6 +66,7 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
+    'silk.middleware.SilkyMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -194,27 +197,27 @@ CELERY_BROKER_URL = f'amqp://{RABBITMQ_DEFAULT_USER}:{RABBITMQ_DEFAULT_PASS}@' \
 CELERY_BEAT_SCHEDULE = {
     'parse_privatbank': {
         'task': 'currency.tasks.parse_privatbank',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute='*/20'),
     },
     'parse_monobank': {
         'task': 'currency.tasks.parse_monobank',
-        'schedule': crontab(minute='*/10'),
+        'schedule': crontab(minute='*/20'),
     },
     'parse_vkurse': {
         'task': 'currency.tasks.parse_vkurse',
-        'schedule': crontab(minute='*/10'),
+        'schedule': crontab(minute='*/20'),
     },
     'parse_otpbank': {
         'task': 'currency.tasks.parse_otpbank',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute='*/20'),
     },
     'parse_ukrsibbank': {
         'task': 'currency.tasks.parse_ukrsibbank',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute='*/20'),
     },
     'parse_oschadbank': {
         'task': 'currency.tasks.parse_oschadbank',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute='*/20'),
     },
 }
 

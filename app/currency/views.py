@@ -19,7 +19,7 @@ class ContactUsList(ListView):
 class RateList(FilterView):
     queryset = Rate.objects.all().order_by('-id').select_related('source')
     template_name = 'rate.html'
-    paginate_by = 7
+    paginate_by = 20
     filterset_class = RateFilter
 
     def get_context_data(self, *args, **kwargs):
